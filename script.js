@@ -5,33 +5,37 @@
 // Remember to include a unit in the value—for example, pixels (10px). The key names of
 // the arrow keys are "ArrowUp" and "ArrowDown". Make sure the keys change only the
 // balloon, without scrolling the page.
-
-let balloon = document.getElementById("balloon");
-let currentSize = 100
-
-const grow = event => {
-    balloon.addEventListener("keydown", event => {
-        if (event.key == "ArrowUp") {
-            event.preventDefault();
-            currentSize *= 1.1;
-            balloon.style.fontSize = currentSize + "%";
-        }
-        else if (event.key == "ArrowDown") {
-            event.preventDefault();
-            currentSize /= 1.1;
-            balloon.style.fontSize = currentSize + "%";
-        }
-    })
-
-}
-
-
 // 1a. When that works, add a feature where, if you blow up the balloon past a certain size,
 // it explodes. In this case, exploding means that it is replaced with a 💥 emoji, and
 // the event handler is removed (so that you can’t inflate or deflate the explosion).
 // Hint: keeping track of the size in percentage might be easier.
 // Hint: Make sure you quote the emoji characters. They are strings, after all.
 // Hint: document.getElementById("balloon") will get the balloon element on the page.
+"use strict";
+
+let balloon = document.getElementById("balloon");
+let currentSize = 100;
+
+function keyDownListener(event) {
+    if (event.key == "ArrowUp") {
+        event.preventDefault();
+        currentSize *= 1.1;
+        balloon.style.fontSize = currentSize + "%";
+    }
+    else if (event.key == "ArrowDown") {
+        event.preventDefault();
+        currentSize *= .9;
+        balloon.style.fontSize = currentSize + "%";
+    }
+    
+    if (currentSize >= 200) {
+        event.preventDefault();
+        balloon.textContent = "💥";
+        window.removeEventListener("keydown", keyDownListener);
+    }
+}
+
+window.addEventListener("keydown", keyDownListener);
 
 // 2. The index.html page has a tabbed layout. Make the default state of the layout show
 // the first tab, and make it so that when you click the links at the top the correct
