@@ -5,7 +5,28 @@
 // Remember to include a unit in the value—for example, pixels (10px). The key names of
 // the arrow keys are "ArrowUp" and "ArrowDown". Make sure the keys change only the
 // balloon, without scrolling the page.
-// When that works, add a feature where, if you blow up the balloon past a certain size,
+
+let balloon = document.getElementById("balloon");
+let currentSize = 100
+
+const grow = event => {
+    balloon.addEventListener("keydown", event => {
+        if (event.key == "ArrowUp") {
+            event.preventDefault();
+            currentSize *= 1.1;
+            balloon.style.fontSize = currentSize + "%";
+        }
+        else if (event.key == "ArrowDown") {
+            event.preventDefault();
+            currentSize /= 1.1;
+            balloon.style.fontSize = currentSize + "%";
+        }
+    })
+
+}
+
+
+// 1a. When that works, add a feature where, if you blow up the balloon past a certain size,
 // it explodes. In this case, exploding means that it is replaced with a 💥 emoji, and
 // the event handler is removed (so that you can’t inflate or deflate the explosion).
 // Hint: keeping track of the size in percentage might be easier.
@@ -19,4 +40,3 @@
 // function as expected. There are many ways to accomplish this task, but you will need
 // to at minimum add listeners to each link and toggle the display of the tab contents.
 // Hint: display: none; hides an element, and display: block; will bring it
- 
