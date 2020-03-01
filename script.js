@@ -45,11 +45,21 @@ window.addEventListener("keydown", keyDownListener);
 // to at minimum add listeners to each link and toggle the display of the tab contents.
 // Hint: display: none; hides an element, and display: block; will bring it
 
-let tabOne = document.getElementById("tabOne");
-let tabTwo = document.getElementById("tabTwo");
-let tabThree = document.getElementById("tabThree");
-let tabs = ["tabOne", "tabTwo", "tabThree"];
+let tabOne = document.getElementById("tabUno");
+let tabTwo = document.getElementById("tabDos");
+let tabThree = document.getElementById("tabTres");
 
-function clickListener(event) {
-    for (let i = 0,)
+let tabFun = [tabOne, tabTwo, tabThree];
+
+function defaultState() {
+    document.getElementById("tab1").style.display = "block";
+    document.getElementById("tab2").style.display = "none";
+    document.getElementById("tab3").style.display = "none";
 }
+ function tabLinks(event) {
+
+ }
+
+ tabOne.addEventListener("click", tabLinks);
+ tabTwo.addEventListener("click", tabLinks);
+ tabThree.addEventListener("click", tabLinks);
